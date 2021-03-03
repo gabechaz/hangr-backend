@@ -1,9 +1,11 @@
 class Hang < ApplicationRecord
     belongs_to :user
     belongs_to :activity
+    has_many :signups
 
-
-    def creator
-        User.find(self.creator_id)
+    def rsvps
+        Signup.all.select {|s| s.hang_id == self.id}
+        .map {|s| s.user}
     end
+
 end

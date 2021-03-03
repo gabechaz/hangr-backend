@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_25_193141) do
+ActiveRecord::Schema.define(version: 2021_02_27_192331) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,9 +22,19 @@ ActiveRecord::Schema.define(version: 2021_02_25_193141) do
   end
 
   create_table "hangs", force: :cascade do |t|
+    t.string "activity_name"
     t.integer "user_id"
     t.integer "activity_id"
-    t.integer "creator_id"
+    t.string "location"
+    t.integer "time"
+    t.integer "people_needed"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "maybes", force: :cascade do |t|
+    t.integer "hang_id"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -32,7 +42,13 @@ ActiveRecord::Schema.define(version: 2021_02_25_193141) do
   create_table "prospects", force: :cascade do |t|
     t.integer "user_id"
     t.integer "activity_id"
-    t.integer "creator_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "signups", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "hang_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

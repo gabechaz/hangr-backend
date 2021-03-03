@@ -6,6 +6,11 @@ class UsersController < ApplicationController
         render json: user
     end
 
+    def hangs
+      user = User.find(params[:id])
+      render json: user.hangs
+    end
+
     def login
         user = User.find_by(username: params[:username])
     

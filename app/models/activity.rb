@@ -9,7 +9,9 @@ def prospects
 end
     
 def interested
-    self.prospects.
+    self.prospects.map do |prospect|
+        prospect.user
+    end
 end
 
 end
