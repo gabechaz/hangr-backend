@@ -19,10 +19,20 @@ class HangsController < ApplicationController
         render json: hang
     end
 
+    def rsvp
+        hang = Hang.find(params[:id])
+        hang.update(rsvp_params)
+        render json: hang
+    end
+
 
     private
 
     def hang_params
-        params.permit(:user_id, :location, :time, :people_needed, :activity_id, :hang, :activity_name)
+        params.permit(:user_id, :location, :time, :people_needed, :hang, :game, :game_name, :time_string, :game_image)
+    end
+
+    def rsvp_params
+        params.permit(:people_needed, :hang, :id)
     end
 end

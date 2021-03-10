@@ -1,3 +1,3 @@
 class SignupSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :hang_id, :user_id
 end

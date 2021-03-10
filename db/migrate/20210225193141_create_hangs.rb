@@ -1,11 +1,13 @@
 class CreateHangs < ActiveRecord::Migration[6.0]
   def change
     create_table :hangs do |t|
-      t.string :activity_name
       t.integer :user_id
-      t.integer :activity_id
+      t.string :game_image
+      t.string :game_id
+      t.string :game_name
       t.string :location
-      t.integer :time
+      t.timestamp :time
+      t.string :time_string
       t.integer :people_needed
       t.timestamps
     end

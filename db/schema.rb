@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_27_192331) do
+ActiveRecord::Schema.define(version: 2021_03_08_153414) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,11 +22,13 @@ ActiveRecord::Schema.define(version: 2021_02_27_192331) do
   end
 
   create_table "hangs", force: :cascade do |t|
-    t.string "activity_name"
     t.integer "user_id"
-    t.integer "activity_id"
+    t.string "game_image"
+    t.string "game_id"
+    t.string "game_name"
     t.string "location"
-    t.integer "time"
+    t.datetime "time"
+    t.string "time_string"
     t.integer "people_needed"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -46,6 +48,17 @@ ActiveRecord::Schema.define(version: 2021_02_27_192331) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.string "image_url"
+    t.integer "reviewer_id"
+    t.integer "reviewee_id"
+    t.integer "hang_id"
+    t.integer "karma"
+    t.string "comment"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "signups", force: :cascade do |t|
     t.integer "user_id"
     t.integer "hang_id"
@@ -57,6 +70,11 @@ ActiveRecord::Schema.define(version: 2021_02_27_192331) do
     t.string "name"
     t.string "username"
     t.string "password_digest"
+    t.string "location"
+    t.string "favGenre"
+    t.string "favGame"
+    t.string "img"
+    t.string "bio"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -12,7 +12,7 @@ class User < ApplicationRecord
     end
 
     def rsvps
-        Signup.select { |s| s.user_id == self}
+        Signup.select { |s| s.user_id == self.id}
         .map { |s| s.hang}
     end
 
@@ -20,4 +20,18 @@ class User < ApplicationRecord
         Hang.all.select {|h| h.user_id == self.id}
     end
 
+    def reviews
+        Review.all.select{ |r| r.reviewee_id == self.id}
+    end
+
+    def karma
+       karma_array =  Review.all.select {|r| r.reviewee_id == self.id}
+        .map{ |r| r.karma}
+        if karma_array[0]
+       karma_array =  karma_array.sum / karma_array.length 
+        else
+            karma_array = 0
+        end
+        karma_array
+    end
 end
