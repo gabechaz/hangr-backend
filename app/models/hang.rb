@@ -21,7 +21,7 @@ class Hang < ApplicationRecord
     end
 
     def review_info
-        reviews.map{ |r| {user:  r.reviewer.name, comment: r.comment, user_image: r.reviewer.img} }
+        reviews.map{ |r| {user:  r.reviewer.name, id: r.reviewer.id, comment: r.comment, user_image: r.reviewer.img} }
     end
 
     def reviewed

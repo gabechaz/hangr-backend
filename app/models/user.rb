@@ -21,17 +21,25 @@ class User < ApplicationRecord
     end
 
     def reviews
-        Review.all.select{ |r| r.reviewee_id == self.id}
+      revs =   Review.all.select{ |r| r.reviewee_id == self.id}
+                .map{|r| {
+                    review: r.comment,
+                    reviewer: r.reviewer.name,
+                    karma: r.karma,
+                    id: r.id
+                }}
+        
+
     end
 
     def karma
        karma_array =  Review.all.select {|r| r.reviewee_id == self.id}
         .map{ |r| r.karma}
         if karma_array[0]
-       karma_array =  karma_array.sum / karma_array.length 
+       karma_array =  karma_array.sum.to_f / karma_array.length.to_f
         else
             karma_array = 0
         end
-        karma_array
+        karma_array.to_f.ceil(2)
     end
 end
